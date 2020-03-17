@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 			location_id: params[:location_id],
 			category_id: params[:category_id]
 		)
-		
+
+		render json: Kitchen.find(Location.find(params:location_id).kitchen)
 	end
 end

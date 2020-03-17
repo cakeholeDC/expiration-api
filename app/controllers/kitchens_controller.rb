@@ -19,7 +19,10 @@ class KitchensController < ApplicationController
 				locations: {
 					except: [ :kitchen_id, :created_at, :updated_at ],
 					include: [ :items ]
-				} 
+				},
+				stocked_items: { 
+					except: [ :created_at, :updated_at ]
+				},
 			]
 		)
 	end
