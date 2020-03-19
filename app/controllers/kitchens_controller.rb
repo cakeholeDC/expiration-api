@@ -21,8 +21,8 @@ class KitchensController < ApplicationController
 					include: [ :items ]
 				},
 				stocked_items: { 
-					except: [ :created_at, :updated_at, :category_id ],
-					include: [ :category ]
+					except: [ :created_at, :updated_at, :category_id, :location_id ],
+					include: [ :category, :location ]
 				},
 			]
 		)
