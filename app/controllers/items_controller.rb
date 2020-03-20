@@ -11,12 +11,7 @@ class ItemsController < ApplicationController
 			category_id: params[:category_id]
 		)
 
-		# kitchen = Location.find(params[:location_id]).kitchen
-		# serialize_kitchen_data(kitchen)
-		render json:item.to_json(
-			include: [ :category ],
-			except: [ :created_at, :updated_at, :category_id ]
-		)
+		serialize_data(item)
 	end
 
 	def update
@@ -30,12 +25,7 @@ class ItemsController < ApplicationController
 			item.category_id = params[:category_id] if params[:category_id]
 		item.save
 
-		# kitchen = Location.find(item.location.id).kitchen
-		# serialize_kitchen_data(kitchen)
-		render json:item.to_json(
-			include: [ :category ],
-			except: [ :created_at, :updated_at, :category_id ]
-		)
+		serialize_data(item)
 	end
 
 	def destroy
@@ -47,19 +37,10 @@ class ItemsController < ApplicationController
 
 	private
 
-	def serialize_kitchen_data(data)
+	def serialize_data(data)
 		render json: data.to_json(
-			except: [ :created_at, :updated_at],
-			include: [
-				locations: {
-					except: [ :kitchen_id, :created_at, :updated_at ],
-					include: [ :items ]
-				},
-				stocked_items: { 
-					except: [ :created_at, :updated_at, :category_id ],
-					include: [ :category ]
-				},
-			]
+			include: [ :category, :location ],
+			except: [ :created_at, :updated_at, :category_id ]
 		)
 	end
 end
