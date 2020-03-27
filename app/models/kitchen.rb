@@ -12,4 +12,13 @@ class Kitchen < ApplicationRecord
 		end
 		items
 	end
+
+	def categories
+		## for each item 
+		self.stocked_items.map do |item| 
+			## get that items cateogry
+			item.category 
+		## return unique categories
+		end.uniq
+	end
 end

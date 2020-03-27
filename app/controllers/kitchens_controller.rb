@@ -16,10 +16,14 @@ class KitchensController < ApplicationController
 		render json: data.to_json(
 			except: [ :created_at, :updated_at],
 			include: [
-				locations: {
-					except: [ :kitchen_id, :created_at, :updated_at ],
-					include: [ :items ]
-				},
+				# locations: {
+				# 	except: [ :kitchen_id, :created_at, :updated_at ],
+				# 	#include: [ :items ]
+				# },
+				# categories: {
+				# 	except: [ :kitchen_id, :created_at, :updated_at ],
+				# 	#include: [ :items ]
+				# },
 				stocked_items: { 
 					except: [ :created_at, :updated_at, :category_id, :location_id ],
 					include: [ :category, :location ]
