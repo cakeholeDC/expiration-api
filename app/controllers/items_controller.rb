@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
 	end
 
 	def update
+		
 		item = Item.find(params[:id])
 			item.name = params[:name] if params[:name]
 			item.qty = params[:qty] if params[:qty]
@@ -24,6 +25,7 @@ class ItemsController < ApplicationController
 			item.location_id = params[:location_id] if params[:location_id]
 			item.category_id = params[:category_id] if params[:category_id]
 		item.save
+
 
 		serialize_data(item)
 	end
